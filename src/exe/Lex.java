@@ -8,7 +8,15 @@ public class Lex {
 		this.code = code ;
 	}
 	
-	// Analizar el codigo y devolver los tokens
+	public void setCode (String code ){
+		this.code = code ;
+	}
+	
+	public String getCode (){
+		return code ;
+	}
+	
+	//TODO: Analizar el codigo y devolver los tokens
 	
 	
 }
