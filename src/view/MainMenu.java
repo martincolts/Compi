@@ -8,7 +8,6 @@ import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
-import javax.swing.JTextArea;
 
 public class MainMenu {
 
@@ -42,7 +41,7 @@ public class MainMenu {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 583, 375);
+		frame.setBounds(100, 100, 657, 375);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -54,25 +53,14 @@ public class MainMenu {
 		scrollPane.setViewportView(textPane);
 		
 		JButton btnRun = new JButton("Run");
-		btnRun.setBounds(469, 11, 89, 23);
+		btnRun.setBounds(521, 62, 89, 23);
 		frame.getContentPane().add(btnRun);
 		btnRun.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				char arr[] = textPane.getText().toString().toCharArray() ;
-				int endLines = 0;
-				int tabs = 0 ;
-				for (int i = 0 ; i < arr.length; i++){
-					if (arr[i]!='\n')
-					System.out.println(arr[i]);
-					else endLines++;
-					
-					if (arr[i]=='\t') tabs++;
-						
-				}
+				System.out.println( textPane.getText().toString() );
 				
-				System.out.println(endLines+"  "+tabs);
 			}
 		});
 		
