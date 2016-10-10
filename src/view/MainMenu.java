@@ -3,13 +3,11 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
-import java.util.Vector;
 
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
-import Properties.WordsFileLoader;
+import exe.TransactionMatrix;
 
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
@@ -64,16 +62,13 @@ public class MainMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println( textPane.getText().toString() );
-				
-				WordsFileLoader wfl = new WordsFileLoader();
-				try {
-					Vector <String> vector = wfl.loadReservedWords();
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+				TransactionMatrix tm = new TransactionMatrix() ;
+				String code = textPane.getText().toString() ;
+				for (int i =0 ; i < code.length(); i++){
+					int sim = tm.getNewState(String.valueOf(code.charAt(i)));
+					System.out.println(sim);
+					 
 				}
-				
 			}
 		});
 		
