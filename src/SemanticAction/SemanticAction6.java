@@ -3,16 +3,15 @@ package SemanticAction;
 import exe.Lex;
 import exe.Token;
 
-public class SemanticAction2 implements SemanticAction {
-
+public class SemanticAction6 implements SemanticAction {
+	
 	@Override
 	public void ejecutar(char caracter) {
 		Token token = Lex.getActualToken();
 		token.addChar(String.valueOf(caracter));
-		Lex.setActualToken(token);
+		token.setId(11);
+		Lex.setToken(token);
 		Lex.incrementCursor();
 	}
-	
-	
 
 }

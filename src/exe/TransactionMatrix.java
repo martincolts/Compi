@@ -33,6 +33,10 @@ public class TransactionMatrix {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0}, //0 = Estado final.
 			{0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
+	
+	public static final Token[][] saMatrix = {
+		{},
+	};
 
 	public TransactionMatrix (){}
 
