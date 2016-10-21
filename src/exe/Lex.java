@@ -1,6 +1,9 @@
 package exe;
 
+import java.io.IOException;
 import java.util.Vector;
+
+import Properties.WordsFileLoader;
 
 public class Lex {
 	
@@ -9,6 +12,7 @@ public class Lex {
 	private static int lineCounter = 0 ;
 	private static Token actualToken ;
 	private static Vector<Token> tokensAcum = new Vector<Token>(); 
+	private static Vector<String> reservedWords ;
 	
 	public Lex ( String code) {
 		this.code = code ;
@@ -36,12 +40,37 @@ public class Lex {
 	
 	public static int lineCounter (){return lineCounter;}
 	
+	public static boolean isReservedWord (String word){
+		for (String wordInVector : reservedWords){
+			if (wordInVector.split(".")[0].equals(word)){
+				return true ;
+			}
+		}
+		return false ;
+	}
+	
+	public static int returntokenNumberReservedWord (String word){
+		for (String wordInVector : reservedWords){
+			if (wordInVector.split(".")[0].equals(word)){
+				return Integer.parseInt(wordInVector.split(".")[1]);
+			}
+		}
+		return -1 ;
+	}
+	
+	public static void setToken (Token token){
+		tokensAcum.addElement(token);
+	}
+	
 	public void tokenGenerater (){
-		
+		try {
+			reservedWords  = new WordsFileLoader().loadReservedWords();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		while (cursor < code.length()){
 			//recorrer el codigo y generar tokens
 		}
-		
 	}
 	
 	

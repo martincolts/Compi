@@ -10,16 +10,18 @@ public class WordsFileLoader {
 	
 	private Properties properties = new Properties();
 	private InputStream  inputFile ;
-	private Vector<String> vec = new Vector<>();
+	
 
 	public Vector<String> loadReservedWords () throws IOException{
-		try {
-			
+		Vector<String>vec = new Vector<String>();
+		
+		try {	
 			inputFile = new FileInputStream("reservedWords.properties");
 			properties.load(inputFile);
 			System.out.println();
 			String palabras [] = properties.getProperty("reservedWords").toString().split(",");
 			for (String palabra : palabras){
+				
 				vec.add(palabra);
 			}
 			
