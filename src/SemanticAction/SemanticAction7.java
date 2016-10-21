@@ -9,7 +9,7 @@ public class SemanticAction7 implements SemanticAction {
 	public void ejecutar(char caracter) {
 		Token token = new Token() ;
 		token.addChar(String.valueOf(caracter));
-		token.setId(-1);//TODO: depende del simbolo, crear una tabla.
+		token.setId(Lex.returntokenNumberReservedWord(token.getLexema()));
 		Lex.setToken(token);
 	}
 

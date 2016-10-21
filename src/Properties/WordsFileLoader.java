@@ -21,7 +21,6 @@ public class WordsFileLoader {
 			System.out.println();
 			String palabras [] = properties.getProperty("reservedWords").toString().split(",");
 			for (String palabra : palabras){
-				
 				vec.add(palabra);
 			}
 			
@@ -37,7 +36,6 @@ public class WordsFileLoader {
 	            }
 	        }
 	    }
-		
 		return vec ;
 	}
 	
