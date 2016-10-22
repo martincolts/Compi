@@ -1,10 +1,6 @@
 package exe;
 
-import java.io.IOException;
-import java.util.Vector;
 import java.util.regex.Pattern;
-
-import Properties.WordsFileLoader;
 
 public class TransactionMatrix {
 
@@ -43,8 +39,6 @@ public class TransactionMatrix {
 	public int transact (char state , char simbol ){
 		return matrix[state][simbol];
 	}
-	
-	public static Vector<String> getReservedWords (){return reservedWords;}
 
 	public String getSimbol (CharSequence simbol){
 
