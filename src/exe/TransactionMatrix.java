@@ -1,10 +1,8 @@
 package exe;
 
 import java.util.regex.Pattern;
-<<<<<<< HEAD
+
 import SemanticAction.*;
-=======
->>>>>>> FETCH_HEAD
 
 public class TransactionMatrix {
 
@@ -95,18 +93,15 @@ public class TransactionMatrix {
 			return -1 ;
 	}
 
-	public int getNewState (String simbol){
+	public void getNewState (String simbol){
 		int colum = getSimbolState (simbol) ;
 		if (colum != -1){
 			if (saMatrix[actualState][colum] != null)
 				saMatrix[actualState][colum].ejecutar(simbol.charAt(0));
 			else 
 				Lex.incrementCursor();
-			return matrix [actualState] [colum] ;
-			
-			
+			actualState = matrix [actualState] [colum] ;
 		}
-		else 
-			return 0 ;
 	}
+			
 }

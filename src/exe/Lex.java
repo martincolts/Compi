@@ -70,7 +70,7 @@ public class Lex {
 			e.printStackTrace();
 		}
 		while (cursor < code.length()){
-			int i = tm.getNewState(code.substring(cursor, cursor+1));
+			tm.getNewState(code.substring(cursor, cursor+1));
 		}
 	}
 	
