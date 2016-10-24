@@ -1,10 +1,7 @@
 package exe;
 
-import java.io.IOException;
-import java.util.Vector;
 import java.util.regex.Pattern;
-
-import Properties.WordsFileLoader;
+import SemanticAction.*;
 
 public class TransactionMatrix {
 
@@ -23,6 +20,16 @@ public class TransactionMatrix {
 	private static final String DOS_PUNTOS = ":";
 	public static int actualState = 0 ;
 	public static int state = 0 ;
+	
+	private static SemanticAction as1 = new SemanticAction1();
+	private static SemanticAction as2 = new SemanticAction2();
+	private static SemanticAction as3 = new SemanticAction3();
+	private static SemanticAction as4 = new SemanticAction4();
+	private static SemanticAction as5 = new SemanticAction5();
+	private static SemanticAction as6 = new SemanticAction6();
+	private static SemanticAction as7 = new SemanticAction7();
+	
+	
 
 	public static final String simbols [] = {DIGIT,NUMBER,MENOR,MAYOR,IGUAL,MAS,MENOS,DIV,POR,DOS_PUNTOS,ENDLINE,TAB,SPACE};
 
@@ -34,8 +41,12 @@ public class TransactionMatrix {
 			{0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 	
-	public static final Token[][] saMatrix = {
-		{},
+	public static final SemanticAction[][] saMatrix = {
+		{(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as1, null, null, null},
+		{(SemanticAction) as2,(SemanticAction) as2,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3},
+		{(SemanticAction) as4,(SemanticAction) as2,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4},
+		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
+		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
 	};
 
 	public TransactionMatrix (){}
@@ -43,8 +54,6 @@ public class TransactionMatrix {
 	public int transact (char state , char simbol ){
 		return matrix[state][simbol];
 	}
-	
-	public static Vector<String> getReservedWords (){return reservedWords;}
 
 	public String getSimbol (CharSequence simbol){
 
@@ -85,8 +94,15 @@ public class TransactionMatrix {
 
 	public int getNewState (String simbol){
 		int colum = getSimbolState (simbol) ;
-		if (colum != -1)
+		if (colum != -1){
+			if (saMatrix[actualState][colum] != null)
+				saMatrix[actualState][colum].ejecutar(simbol.charAt(0));
+			else 
+				Lex.incrementCursor();
 			return matrix [actualState] [colum] ;
+			
+			
+		}
 		else 
 			return 0 ;
 	}

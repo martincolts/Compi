@@ -13,6 +13,7 @@ public class Lex {
 	private static Token actualToken ;
 	private static Vector<Token> tokensAcum = new Vector<Token>(); 
 	private static Vector<String> reservedWords ;
+	private static TransactionMatrix tm = new TransactionMatrix() ;
 	
 	public Lex ( String code) {
 		this.code = code ;
@@ -62,16 +63,20 @@ public class Lex {
 		tokensAcum.addElement(token);
 	}
 	
-	public void tokenGenerater (){
+	public void tokenGenerator (){
 		try {
 			reservedWords  = new WordsFileLoader().loadReservedWords();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		while (cursor < code.length()){
-			//recorrer el codigo y generar tokens
+			int i = tm.getNewState(code.substring(cursor, cursor+1));
 		}
 	}
 	
-	
+	public void printTokens (){
+		for (Token token : tokensAcum){
+			System.out.println (token.getLexema()+" "+token.getId());
+		}
+	}
 }

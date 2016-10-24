@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
 
+import exe.Lex;
 import exe.TransactionMatrix;
 
 import javax.swing.JScrollPane;
@@ -62,13 +63,14 @@ public class MainMenu {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TransactionMatrix tm = new TransactionMatrix() ;
+				/*TransactionMatrix tm = new TransactionMatrix() ;
 				String code = textPane.getText().toString() ;
 				for (int i =0 ; i < code.length(); i++){
 					int sim = tm.getNewState(String.valueOf(code.charAt(i)));
-					System.out.println(sim);
-					 
-				}
+					System.out.println(sim);*/
+				Lex lex = new Lex(textPane.getText().toString());
+				lex.tokenGenerator();
+				lex.printTokens();
 			}
 		});
 		
