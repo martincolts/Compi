@@ -10,7 +10,7 @@ public class SemanticAction4 implements SemanticAction {
 		Token token = Lex.getActualToken();
 		token.addChar(String.valueOf(caracter));
 		//TODO:Verificar el rango.
-		token.setId(11);
+		token.setId(32);//32 id de una constante
 		Lex.setToken(token);
 	}
 

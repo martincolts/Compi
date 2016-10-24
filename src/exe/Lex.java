@@ -43,7 +43,7 @@ public class Lex {
 	
 	public static boolean isReservedWord (String word){
 		for (String wordInVector : reservedWords){
-			if (wordInVector.split(".")[0].equals(word)){
+			if (wordInVector.toString().split("_")[0].equals(word)){
 				return true ;
 			}
 		}
@@ -52,8 +52,8 @@ public class Lex {
 	
 	public static int returntokenNumberReservedWord (String word){
 		for (String wordInVector : reservedWords){
-			if (wordInVector.split(".")[0].equals(word)){
-				return Integer.parseInt(wordInVector.split(".")[1]);
+			if (wordInVector.toString().split("_")[0].equals(word)){
+				return Integer.parseInt(wordInVector.toString().split("_")[1]);
 			}
 		}
 		return -1 ;
