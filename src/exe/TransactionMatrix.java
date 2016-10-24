@@ -32,22 +32,22 @@ public class TransactionMatrix {
 	
 	
 
-	public static final String simbols [] = {DIGIT,NUMBER,MENOR,MAYOR,IGUAL,MAS,MENOS,DIV,POR,DOS_PUNTOS,ENDLINE,TAB,SPACE};
+	public static final String simbols [] = {DIGIT,NUMBER,MENOR,MAYOR,IGUAL,MAS,MENOS,DIV,POR,DOS_PUNTOS,ENDLINE,TAB,SPACE,Lex.EOF};
 
 	public static final int[][] matrix = 	{	
-			{1,2,3,0,0,0,0,0,0,4,0,0,0},
-			{1,1,0,0,0,0,0,0,0,0,0,0,0},
-			{0,2,0,0,0,0,0,0,0,0,0,0,0},
-			{0,0,0,0,0,0,0,0,0,0,0,0,0}, //0 = Estado final.
-			{0,0,0,0,0,0,0,0,0,0,0,0,0}
+			{1,2,3,0,0,0,0,0,0,4,0,0,0,0},
+			{1,1,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,2,0,0,0,0,0,0,0,0,0,0,0,0},
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0}, //0 = Estado final.
+			{0,0,0,0,0,0,0,0,0,0,0,0,0,0}
 	};
 	
 	public static final SemanticAction[][] saMatrix = {
-		{(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as1, null, null, null},
-		{(SemanticAction) as2,(SemanticAction) as2,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3},
-		{(SemanticAction) as4,(SemanticAction) as2,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4},
-		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
-		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
+		{(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as1,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as7,(SemanticAction) as1, null, null, null, null},
+		{(SemanticAction) as2,(SemanticAction) as2,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3,(SemanticAction) as3},
+		{(SemanticAction) as4,(SemanticAction) as2,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4,(SemanticAction) as4},
+		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
+		{(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as6,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5,(SemanticAction) as5},
 	};
 
 	public TransactionMatrix (){}

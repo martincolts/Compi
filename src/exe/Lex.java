@@ -14,9 +14,10 @@ public class Lex {
 	private static Vector<Token> tokensAcum = new Vector<Token>(); 
 	private static Vector<String> reservedWords ;
 	private static TransactionMatrix tm = new TransactionMatrix() ;
+	public static final String EOF = "$";
 	
 	public Lex ( String code) {
-		this.code = code ;
+		this.code = code+EOF ;
 	}
 	
 	public static Token getActualToken (){return actualToken;}
