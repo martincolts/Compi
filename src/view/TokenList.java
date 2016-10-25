@@ -17,12 +17,12 @@ public class TokenList extends JFrame{
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 536, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 240, 424, -199);
+		scrollPane.setBounds(12, 287, 510, -246);
 		frame.getContentPane().add(scrollPane);
 		
 		table = new JTable();
@@ -35,5 +35,7 @@ public class TokenList extends JFrame{
 			}
 		));
 	}
+	
+	
 	
 }
