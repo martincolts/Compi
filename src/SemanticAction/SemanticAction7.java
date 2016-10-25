@@ -11,6 +11,7 @@ public class SemanticAction7 implements SemanticAction {
 		token.addChar(String.valueOf(caracter));
 		token.setId(Lex.returntokenNumberReservedWord(token.getLexema()));
 		Lex.setToken(token);
+		Lex.incrementCursor();
 	}
 
 }

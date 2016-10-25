@@ -3,15 +3,19 @@ package view;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
+
 import exe.Lex;
+
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
 public class MainMenu {
 
 	private JFrame frame;
+	private JButton btnTokenList ;
 
 	/**
 	 * Launch the application.
@@ -53,22 +57,34 @@ public class MainMenu {
 		scrollPane.setViewportView(textPane);
 		
 		JButton btnRun = new JButton("Run");
-		btnRun.setBounds(521, 62, 89, 23);
+		btnRun.setBounds(471, 84, 89, 23);
 		frame.getContentPane().add(btnRun);
+		
+		btnTokenList = new JButton("Ver lista de tokens");
+		btnTokenList.setBounds(471, 119, 172, 25);
+		frame.getContentPane().add(btnTokenList);
+		btnTokenList.setEnabled(false);
+		
 		btnRun.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				/*TransactionMatrix tm = new TransactionMatrix() ;
-				String code = textPane.getText().toString() ;
-				for (int i =0 ; i < code.length(); i++){
-					int sim = tm.getNewState(String.valueOf(code.charAt(i)));
-					System.out.println(sim);*/
 				Lex lex = new Lex(textPane.getText().toString());
 				lex.tokenGenerator();
 				lex.printTokens();
+				btnTokenList.setEnabled(true);
 			}
 		});
+		
+		btnTokenList.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				TokenList tokenList = new TokenList();
+				tokenList.setVisible(true);
+			}
+		});
+		
 		
 	}
 }
