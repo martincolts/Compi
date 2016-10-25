@@ -1,41 +1,80 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
 
-public class TokenList extends JFrame{
+import exe.Lex;
+import exe.Token;
 
-	private static final long serialVersionUID = 1L;
-	private JFrame frame;
+public class TokenList extends JFrame {
+
+	private JPanel contentPane;
 	private JTable table;
 
-	public TokenList() {
-		initialize();
-	}
+	/**
+	 * Launch the application.
+	 *//*
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TokenList frame = new TokenList();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}*/
 
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 536, 350);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+	/**
+	 * Create the frame.
+	 */
+	public TokenList() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(12, 287, 510, -246);
-		frame.getContentPane().add(scrollPane);
+		GroupLayout gl_contentPane = new GroupLayout(contentPane);
+		gl_contentPane.setHorizontalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_contentPane.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 394, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(32, Short.MAX_VALUE))
+		);
+		gl_contentPane.setVerticalGroup(
+			gl_contentPane.createParallelGroup(Alignment.LEADING)
+				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+		);
 		
 		table = new JTable();
-		scrollPane.setViewportView(table);
 		table.setModel(new DefaultTableModel(
-			new String[][] { {"sadasd", "sadasd"},
+			new Object[][] {
 			},
 			new String[] {
 				"Token", "Value"
 			}
 		));
+		scrollPane.setViewportView(table);
+		contentPane.setLayout(gl_contentPane);
+		
+		for (Token token : Lex.getTokens()){
+			Object fila [] = new Object[2];
+			fila[0] = token.getLexema();
+			fila[1] = token.getId();
+			((DefaultTableModel) table.getModel()).addRow(fila);
+		}
+		
 	}
-	
-	
-	
+
 }
