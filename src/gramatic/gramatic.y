@@ -18,6 +18,6 @@ tipo : INT ':'| REAL ':'
 lista : lista var | var ;
 var : ID ; 
 inicio : ID ;
-fin : IF ;
+sentencias : IF ;
 
 %%
