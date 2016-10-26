@@ -8,8 +8,7 @@ public class SemanticAction5 extends SemanticAction {
 	@Override
 	public void ejecutar(char caracter) {
 		Token token = Lex.getActualToken();
-		token.addChar(String.valueOf(caracter));
-		token.setId(Lex.returntokenNumberReservedWord("<"));
+		token.setId(Lex.returntokenNumberReservedWord(MENOR));
 		Lex.setToken(token);
 	}
 

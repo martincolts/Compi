@@ -5,6 +5,7 @@ public abstract class SemanticAction {
 	protected static final String ID = "ID" ;
 	protected static final String CTE = "CTE" ;
 	protected static final String DISTINTO = "<>" ;
+	protected static final String MENOR = "<" ;
 	
 	public abstract void ejecutar (char caracter);
 	
