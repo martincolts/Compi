@@ -80,8 +80,8 @@ public class MainMenu {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				TokenList tokenList = new TokenList();
-				tokenList.setVisible(true);
+				new TokenList().setVisible(true);
+				
 			}
 		});
 		

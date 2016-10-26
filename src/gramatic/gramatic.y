@@ -1,4 +1,5 @@
 /*Declaraciones*/
+% package gramatic ;
 
 %token ID
 %token IF
