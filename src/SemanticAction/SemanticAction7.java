@@ -3,7 +3,7 @@ package SemanticAction;
 import exe.Lex;
 import exe.Token;
 
-public class SemanticAction7 implements SemanticAction {
+public class SemanticAction7 extends SemanticAction {
 
 	@Override
 	public void ejecutar(char caracter) {

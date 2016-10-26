@@ -1,8 +1,12 @@
 package SemanticAction;
 
-public interface SemanticAction {
+public abstract class SemanticAction {
 	
-	public void ejecutar (char caracter);
+	protected static final String ID = "ID" ;
+	protected static final String CTE = "CTE" ;
+	protected static final String DISTINTO = "<>" ;
+	
+	public abstract void ejecutar (char caracter);
 	
 	/*
 	  AS1: Inicializar el token, empaquetar el token leido, consumir el caracter.

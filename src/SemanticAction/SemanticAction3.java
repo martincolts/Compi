@@ -3,7 +3,7 @@ package SemanticAction;
 import exe.Lex;
 import exe.Token;
 
-public class SemanticAction3 implements SemanticAction {
+public class SemanticAction3 extends SemanticAction {
 	
 	@Override
 	public void ejecutar(char caracter) {
@@ -14,7 +14,7 @@ public class SemanticAction3 implements SemanticAction {
 			Lex.setToken(token);
 		}
 		else{
-			token.setId (-1);
+			token.setId (Lex.returntokenNumberReservedWord(ID));
 			Lex.setToken(token);
 		}
 	}
