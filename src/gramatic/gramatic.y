@@ -25,7 +25,7 @@
 program : declaraciones sentencias ;
 
 /* Declaraciones */
-declaraciones: declaraciones declaracion | declaracion;
+declaraciones: declaraciones declaracion | declaracion ';';
 declaracion : tipo lista ;
 tipo : INT ':'| REAL ':'
 lista : lista var | var ;
@@ -34,6 +34,21 @@ inicio : ID ;
 
 /* Sentencias */
 
-sentencias : IF ;
+sentencias : sentencias sentencia | sentencia ';';
+sentencia : bloque | iteracion | seleccion | asignacion |;
+
+bloque : BEGIN sentencias END ;
+
+iteracion : WHILE condicion DO bloque ;
+
+condicion : expresion COMP expresion ;
+
+seleccion : IF cuerpoIf ;
+cuerpoIf : condicion THEN bloque | codicion THEN bloque ELSE bloque ;
+
+asignacion : ID '=' expresion ;
+expresion : expresion '+' termino | expresion '-' termino | termino;
+termino : termino '*' factor | termino '/' factor | factor;
+factor : ID | CTE ;
 
 %%
