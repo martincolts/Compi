@@ -1,6 +1,3 @@
-/*Declaraciones*/
-% package gramatic ;
-
 
 
 
@@ -16,6 +13,7 @@
 %token DISTICT
 %token CTE
 %token ID
+%token COMP
 
 %%
 
@@ -44,7 +42,7 @@ iteracion : WHILE condicion DO bloque ;
 condicion : expresion COMP expresion ;
 
 seleccion : IF cuerpoIf ;
-cuerpoIf : condicion THEN bloque | codicion THEN bloque ELSE bloque ;
+cuerpoIf : condicion THEN bloque | condicion THEN bloque ELSE bloque ;
 
 asignacion : ID '=' expresion ;
 expresion : expresion '+' termino | expresion '-' termino | termino;
