@@ -1,0 +1,554 @@
+   0  $accept : program $end
+
+   1  program : declaraciones sentencias
+
+   2  declaraciones : declaraciones declaracion
+   3                | declaracion
+
+   4  declaracion : tipo lista
+
+   5  tipo : INT ':'
+   6       | REAL ':'
+
+   7  lista : lista ',' var
+   8        | var
+
+   9  var : ID
+
+  10  sentencias : sentencias sentencia
+  11             | sentencia
+
+  12  sentencia : iteracion
+  13            | seleccion
+  14            | asignacion
+
+  15  bloque : BEGIN sentencias END
+
+  16  iteracion : WHILE condicion DO bloque
+
+  17  condicion : expresion COMP expresion
+
+  18  seleccion : IF cuerpoif
+
+  19  cuerpoif : condicion THEN bloque
+  20           | condicion THEN bloque ELSE bloque
+
+  21  asignacion : ID '=' expresion
+
+  22  expresion : expresion '+' termino
+  23            | expresion '-' termino
+  24            | termino
+
+  25  termino : termino '*' factor
+  26          | termino '/' factor
+  27          | factor
+
+  28  factor : ID
+  29         | CTE
+
+state 0
+	$accept : . program $end  (0)
+
+	INT  shift 1
+	REAL  shift 2
+	.  error
+
+	program  goto 3
+	declaraciones  goto 4
+	declaracion  goto 5
+	tipo  goto 6
+
+
+state 1
+	tipo : INT . ':'  (5)
+
+	':'  shift 7
+	.  error
+
+
+state 2
+	tipo : REAL . ':'  (6)
+
+	':'  shift 8
+	.  error
+
+
+state 3
+	$accept : program . $end  (0)
+
+	$end  accept
+
+
+state 4
+	program : declaraciones . sentencias  (1)
+	declaraciones : declaraciones . declaracion  (2)
+
+	IF  shift 9
+	WHILE  shift 10
+	INT  shift 1
+	REAL  shift 2
+	ID  shift 11
+	.  error
+
+	sentencias  goto 12
+	declaracion  goto 13
+	tipo  goto 6
+	sentencia  goto 14
+	iteracion  goto 15
+	seleccion  goto 16
+	asignacion  goto 17
+
+
+state 5
+	declaraciones : declaracion .  (3)
+
+	.  reduce 3
+
+
+state 6
+	declaracion : tipo . lista  (4)
+
+	ID  shift 18
+	.  error
+
+	lista  goto 19
+	var  goto 20
+
+
+state 7
+	tipo : INT ':' .  (5)
+
+	.  reduce 5
+
+
+state 8
+	tipo : REAL ':' .  (6)
+
+	.  reduce 6
+
+
+state 9
+	seleccion : IF . cuerpoif  (18)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	condicion  goto 23
+	expresion  goto 24
+	cuerpoif  goto 25
+	termino  goto 26
+	factor  goto 27
+
+
+state 10
+	iteracion : WHILE . condicion DO bloque  (16)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	condicion  goto 28
+	expresion  goto 24
+	termino  goto 26
+	factor  goto 27
+
+
+state 11
+	asignacion : ID . '=' expresion  (21)
+
+	'='  shift 29
+	.  error
+
+
+state 12
+	program : declaraciones sentencias .  (1)
+	sentencias : sentencias . sentencia  (10)
+
+	IF  shift 9
+	WHILE  shift 10
+	ID  shift 11
+	$end  reduce 1
+
+	sentencia  goto 30
+	iteracion  goto 15
+	seleccion  goto 16
+	asignacion  goto 17
+
+
+state 13
+	declaraciones : declaraciones declaracion .  (2)
+
+	.  reduce 2
+
+
+state 14
+	sentencias : sentencia .  (11)
+
+	.  reduce 11
+
+
+state 15
+	sentencia : iteracion .  (12)
+
+	.  reduce 12
+
+
+state 16
+	sentencia : seleccion .  (13)
+
+	.  reduce 13
+
+
+state 17
+	sentencia : asignacion .  (14)
+
+	.  reduce 14
+
+
+state 18
+	var : ID .  (9)
+
+	.  reduce 9
+
+
+state 19
+	declaracion : tipo lista .  (4)
+	lista : lista . ',' var  (7)
+
+	','  shift 31
+	IF  reduce 4
+	WHILE  reduce 4
+	INT  reduce 4
+	REAL  reduce 4
+	ID  reduce 4
+
+
+state 20
+	lista : var .  (8)
+
+	.  reduce 8
+
+
+state 21
+	factor : CTE .  (29)
+
+	.  reduce 29
+
+
+state 22
+	factor : ID .  (28)
+
+	.  reduce 28
+
+
+state 23
+	cuerpoif : condicion . THEN bloque  (19)
+	cuerpoif : condicion . THEN bloque ELSE bloque  (20)
+
+	THEN  shift 32
+	.  error
+
+
+state 24
+	condicion : expresion . COMP expresion  (17)
+	expresion : expresion . '+' termino  (22)
+	expresion : expresion . '-' termino  (23)
+
+	COMP  shift 33
+	'+'  shift 34
+	'-'  shift 35
+	.  error
+
+
+state 25
+	seleccion : IF cuerpoif .  (18)
+
+	.  reduce 18
+
+
+state 26
+	expresion : termino .  (24)
+	termino : termino . '*' factor  (25)
+	termino : termino . '/' factor  (26)
+
+	'*'  shift 36
+	'/'  shift 37
+	$end  reduce 24
+	IF  reduce 24
+	THEN  reduce 24
+	WHILE  reduce 24
+	DO  reduce 24
+	END  reduce 24
+	ID  reduce 24
+	COMP  reduce 24
+	'+'  reduce 24
+	'-'  reduce 24
+
+
+state 27
+	termino : factor .  (27)
+
+	.  reduce 27
+
+
+state 28
+	iteracion : WHILE condicion . DO bloque  (16)
+
+	DO  shift 38
+	.  error
+
+
+state 29
+	asignacion : ID '=' . expresion  (21)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	expresion  goto 39
+	termino  goto 26
+	factor  goto 27
+
+
+state 30
+	sentencias : sentencias sentencia .  (10)
+
+	.  reduce 10
+
+
+state 31
+	lista : lista ',' . var  (7)
+
+	ID  shift 18
+	.  error
+
+	var  goto 40
+
+
+state 32
+	cuerpoif : condicion THEN . bloque  (19)
+	cuerpoif : condicion THEN . bloque ELSE bloque  (20)
+
+	BEGIN  shift 41
+	.  error
+
+	bloque  goto 42
+
+
+state 33
+	condicion : expresion COMP . expresion  (17)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	expresion  goto 43
+	termino  goto 26
+	factor  goto 27
+
+
+state 34
+	expresion : expresion '+' . termino  (22)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	termino  goto 44
+	factor  goto 27
+
+
+state 35
+	expresion : expresion '-' . termino  (23)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	termino  goto 45
+	factor  goto 27
+
+
+state 36
+	termino : termino '*' . factor  (25)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	factor  goto 46
+
+
+state 37
+	termino : termino '/' . factor  (26)
+
+	CTE  shift 21
+	ID  shift 22
+	.  error
+
+	factor  goto 47
+
+
+state 38
+	iteracion : WHILE condicion DO . bloque  (16)
+
+	BEGIN  shift 41
+	.  error
+
+	bloque  goto 48
+
+
+state 39
+	asignacion : ID '=' expresion .  (21)
+	expresion : expresion . '+' termino  (22)
+	expresion : expresion . '-' termino  (23)
+
+	'+'  shift 34
+	'-'  shift 35
+	$end  reduce 21
+	IF  reduce 21
+	WHILE  reduce 21
+	END  reduce 21
+	ID  reduce 21
+
+
+state 40
+	lista : lista ',' var .  (7)
+
+	.  reduce 7
+
+
+state 41
+	bloque : BEGIN . sentencias END  (15)
+
+	IF  shift 9
+	WHILE  shift 10
+	ID  shift 11
+	.  error
+
+	sentencias  goto 49
+	sentencia  goto 14
+	iteracion  goto 15
+	seleccion  goto 16
+	asignacion  goto 17
+
+
+state 42
+	cuerpoif : condicion THEN bloque .  (19)
+	cuerpoif : condicion THEN bloque . ELSE bloque  (20)
+
+	ELSE  shift 50
+	$end  reduce 19
+	IF  reduce 19
+	WHILE  reduce 19
+	END  reduce 19
+	ID  reduce 19
+
+
+state 43
+	condicion : expresion COMP expresion .  (17)
+	expresion : expresion . '+' termino  (22)
+	expresion : expresion . '-' termino  (23)
+
+	'+'  shift 34
+	'-'  shift 35
+	THEN  reduce 17
+	DO  reduce 17
+
+
+state 44
+	expresion : expresion '+' termino .  (22)
+	termino : termino . '*' factor  (25)
+	termino : termino . '/' factor  (26)
+
+	'*'  shift 36
+	'/'  shift 37
+	$end  reduce 22
+	IF  reduce 22
+	THEN  reduce 22
+	WHILE  reduce 22
+	DO  reduce 22
+	END  reduce 22
+	ID  reduce 22
+	COMP  reduce 22
+	'+'  reduce 22
+	'-'  reduce 22
+
+
+state 45
+	expresion : expresion '-' termino .  (23)
+	termino : termino . '*' factor  (25)
+	termino : termino . '/' factor  (26)
+
+	'*'  shift 36
+	'/'  shift 37
+	$end  reduce 23
+	IF  reduce 23
+	THEN  reduce 23
+	WHILE  reduce 23
+	DO  reduce 23
+	END  reduce 23
+	ID  reduce 23
+	COMP  reduce 23
+	'+'  reduce 23
+	'-'  reduce 23
+
+
+state 46
+	termino : termino '*' factor .  (25)
+
+	.  reduce 25
+
+
+state 47
+	termino : termino '/' factor .  (26)
+
+	.  reduce 26
+
+
+state 48
+	iteracion : WHILE condicion DO bloque .  (16)
+
+	.  reduce 16
+
+
+state 49
+	sentencias : sentencias . sentencia  (10)
+	bloque : BEGIN sentencias . END  (15)
+
+	IF  shift 9
+	WHILE  shift 10
+	END  shift 51
+	ID  shift 11
+	.  error
+
+	sentencia  goto 30
+	iteracion  goto 15
+	seleccion  goto 16
+	asignacion  goto 17
+
+
+state 50
+	cuerpoif : condicion THEN bloque ELSE . bloque  (20)
+
+	BEGIN  shift 41
+	.  error
+
+	bloque  goto 52
+
+
+state 51
+	bloque : BEGIN sentencias END .  (15)
+
+	.  reduce 15
+
+
+state 52
+	cuerpoif : condicion THEN bloque ELSE bloque .  (20)
+
+	.  reduce 20
+
+
+22 terminals, 18 nonterminals
+30 grammar rules, 53 states
